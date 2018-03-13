@@ -7,6 +7,7 @@
         <div class="row">
             <div class="col-lg-10 col-xs-6">
                 <div class="box">
+
                     <div class="box-header with-border">
                         <h3 class="box-title">角色列表</h3>
                     </div>
@@ -33,8 +34,9 @@
                                 <button type="submit" class="btn btn-primary">提交</button>
                             </div>
                         </form>
-                    </div>
 
+
+                    </div>
                 </div>
             </div>
         </div>

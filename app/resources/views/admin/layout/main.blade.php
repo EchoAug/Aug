@@ -41,12 +41,12 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
+
     @include("admin.layout.header")
     <!-- Left side column. contains the logo and sidebar -->
     @include("admin.layout.sidebar")
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @include("admin.layout.error")
         <!-- content -->
         @yield("content")
         <!-- /.content -->
@@ -97,7 +97,6 @@
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/adminlte/dist/js/demo.js"></script>
-<script src="/layer/layer.js"></script>
-<script src="/js/admin.js"></script>
+<script src="{{--{{ mix('/js/admin.js') }}--}}"></script>
 </body>
 </html>

@@ -38,7 +38,7 @@ class UserController extends Controller
         //验证
         $this->validate(request(), [
             'name' => 'required|min:3',
-            'password' => 'required|min:4'
+            'password' => 'required'
         ]);
 
         $name = request('name');
@@ -56,7 +56,7 @@ class UserController extends Controller
     //修改用户信息
     public function update()
     {
-        $this->validate(request(), [
+        $this->validate(request(),[
             'name' => 'required|min:3',
             'uid' => 'required'
         ]);
@@ -66,17 +66,6 @@ class UserController extends Controller
         return redirect('/admin/users');
     }
 
-    //删除用户
-    public function delete(AdminUser $user)
-    {
-        $user->delete();
-        return response()->json([
-            'code' => 0,
-            'msg' => '删除成功',
-            'data' => []
-        ],200);
-    }
-
     /**
      * 分配角色（实际上也是权限分配，用户与权限是一个远程关系）
      * @param AdminUser $user
@@ -84,7 +73,7 @@ class UserController extends Controller
      */
     public function grantRole(AdminUser $user)
     {
-        $this->validate(request(), [
+        $this->validate(request(),[
             'roles' => 'required|array'
         ]);
         $roles = AdminRole::find(request('roles'));

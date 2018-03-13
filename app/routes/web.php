@@ -33,7 +33,6 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::post('/user/store', '\App\Admin\Controllers\UserController@store');
                 Route::get('/user/{user}','\App\Admin\Controllers\UserController@edit');
                 Route::post('/user/update','\App\Admin\Controllers\UserController@update');
-                Route::post('/user/{user}/delete', '\App\Admin\Controllers\UserController@delete');
                 Route::get('/user/{user}/role', '\App\Admin\Controllers\UserController@roles');
                 Route::post('/user/{user}/role', '\App\Admin\Controllers\UserController@grantRole');
             });

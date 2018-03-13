@@ -22,12 +22,14 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">创建用户</button>
+                            <button type="button" class="btn btn-default" data-toggle="modal"
+                                    data-target="#modal-default">创建用户
+                            </button>
                         </h3>
-
                         <div class="box-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
 
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -54,9 +56,14 @@
                                     <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                                     <td>
                                         <div class="btn-group-xs">
+                                            <button type="button" class="btn btn-default"
+                                                    onclick="query('/admin/user/{{$user->id}}')">修改信息
+                                            </button>
                                             <a type="button" class="btn btn-default btn-xs"
-                                               href="/admin/user/{{$user->id}}/role">角色管理</a>
-                                            <button type="button" class="btn btn-default" onclick="query('/admin/user/{{$user->id}}')">修改信息</button>
+                                                href="/admin/user/{{$user->id}}/role">角色管理</a>
+                                            <button type="button" class="btn btn-info"
+                                                    onclick="confirm('/admin/user/{{$user->id}}/delete')">删除用户
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -67,7 +74,7 @@
 
                     <!-- 创建用户模态框 -->
                     <div class="example-modal">
-                        <div class="modal modal-primary fade" id="modal-default">
+                        <div class="modal modal-default fade" id="modal-default">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -76,27 +83,27 @@
                                         <h4 class="modal-title">创建管理员</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="box box-primary">
-                                            <!-- form start -->
-                                            <form role="form" action="/admin/user/store" method="POST">
-                                                {{csrf_field()}}
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">用户名</label>
-                                                        <input type="text" class="form-control" placeholder="Name" name="name">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputPassword1">密码</label>
-                                                        <input type="password" class="form-control" placeholder="Password" name="password">
-                                                    </div>
+                                        <!-- form start -->
+                                        <form role="form" action="/admin/user/store" method="POST">
+                                            {{csrf_field()}}
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">用户名</label>
+                                                    <input type="text" class="form-control" placeholder="Name"
+                                                           name="name">
                                                 </div>
-                                                <!-- /.box-body -->
-                                                <div class="box-footer">
-                                                    <button type="reset" class="btn btn-yahoo">重填</button>
-                                                    <button type="submit" class="btn btn-primary">创建</button>
+                                                <div class="form-group">
+                                                    <label for="exampleInputPassword1">密码</label>
+                                                    <input type="password" class="form-control" placeholder="Password"
+                                                           name="password">
                                                 </div>
-                                            </form>
-                                        </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="reset" class="btn btn-yahoo">重填</button>
+                                                <button type="submit" class="btn btn-primary">创建</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
@@ -109,33 +116,31 @@
 
                     <!--修改用户信息模态框-->
                     <div class="example-modal">
-                        <div class="modal modal-primary fade" id="modal-edit">
+                        <div class="modal modal-default fade" id="modal-edit">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title">修改信息</h4>
+                                        <h4 class="modal-title">修改用户信息</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="box box-primary">
-                                            <!-- form start -->
-                                            <form role="form" action="/admin/user/update" method="POST">
-                                                {{csrf_field()}}
-                                                <div class="box-body">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">用户名</label>
-                                                        <input type="text" class="form-control" name="name" id="name">
-                                                    </div>
+                                        <!-- form start -->
+                                        <form role="form" action="/admin/user/update" method="POST">
+                                            {{csrf_field()}}
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">用户名</label>
+                                                    <input type="text" class="form-control" name="name" id="name">
                                                 </div>
-                                                <input type="hidden" value="" name="uid" id="uid">
-                                                <!-- /.box-body -->
-                                                <div class="box-footer">
-                                                    <button type="reset" class="btn btn-yahoo">重填</button>
-                                                    <button type="submit" class="btn btn-primary">提交</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            </div>
+                                            <input type="hidden" value="" name="uid" id="uid">
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="reset" class="btn btn-yahoo">重填</button>
+                                                <button type="submit" class="btn btn-primary">提交</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
@@ -144,29 +149,45 @@
                         </div>
                         <!-- /.modal -->
                     </div>
+                    <!-- modal-end -->
+
                 </div>
                 <!-- /.box -->
             </div>
             <script>
-                var query = function(url){
+                //修改用户信息
+                var query = function (url) {
                     $.ajax({
-                        url:url,
-                        async:true,
-                        type:'GET',
+                        url: url,
+                        async: false,
+                        type: 'GET',
                         success: showQuery,
-                        error : function () {
-                            alert("请求失败");
+                        error: function () {
+                            Utils.errorLayer();
                         },
-                        dataType : "json"
+                        dataType: "json"
                     });
                 };
 
-                var showQuery = function(data){
+                var showQuery = function (data) {
                     $("#name").val(data.name);
                     $("#uid").val(data.id);
                     //显示模态框
                     $("#modal-edit").modal('show');
                 };
+
+                //删除用户
+                var confirm = function (url) {
+                    layer.confirm('确定删除此用户吗？', {
+                        btn: ['确定', '取消'] //按钮
+                    }, function () {
+                        $.post(url, {"_token": $("input[name='_token']").val()}, function () {
+                            Utils.successLayer();
+                            Utils.refresh();
+                        });
+                    });
+                };
+
             </script>
         </div>
     </section>
