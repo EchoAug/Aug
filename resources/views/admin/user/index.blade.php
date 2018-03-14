@@ -60,8 +60,8 @@
                                                     onclick="query('/admin/user/{{$user->id}}')">修改信息
                                             </button>
                                             <a type="button" class="btn btn-default btn-xs"
-                                                href="/admin/user/{{$user->id}}/role">角色管理</a>
-                                            <button type="button" class="btn btn-info"
+                                               href="/admin/user/{{$user->id}}/role">角色管理</a>
+                                            <button type="button" class="btn btn-danger"
                                                     onclick="confirm('/admin/user/{{$user->id}}/delete')">删除用户
                                             </button>
                                         </div>
@@ -156,7 +156,7 @@
             </div>
             <script>
                 //修改用户信息
-                var query = function (url) {
+                function query(url) {
                     $.ajax({
                         url: url,
                         async: false,
@@ -169,7 +169,7 @@
                     });
                 };
 
-                var showQuery = function (data) {
+                function showQuery(data) {
                     $("#name").val(data.name);
                     $("#uid").val(data.id);
                     //显示模态框
@@ -177,7 +177,7 @@
                 };
 
                 //删除用户
-                var confirm = function (url) {
+                function confirm(url) {
                     layer.confirm('确定删除此用户吗？', {
                         btn: ['确定', '取消'] //按钮
                     }, function () {
@@ -187,6 +187,10 @@
                         });
                     });
                 };
+
+                $(document).ajaxStart(function () {
+                    Pace.restart();
+                });
 
             </script>
         </div>

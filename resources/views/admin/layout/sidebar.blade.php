@@ -4,6 +4,14 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
+            @can('platform')
+            <li class="treeview">
+                <a href="/admin/home">
+                    <i class="fa fa-dashboard"></i> <span>控制台</span>
+                    <span class="pull-right-container"></span>
+                </a>
+            </li>
+            @endcan
             @can('system')
             <li class="treeview active">
                 <a href="#">

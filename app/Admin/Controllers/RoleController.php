@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
+    use \App\Util\Tree;
+
     public function index()
     {
         $roles = AdminRole::paginate(10);
@@ -29,7 +31,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|unique:admin_roles,name',
             'description' => 'required',
         ]);
 
@@ -42,16 +44,27 @@ class RoleController extends Controller
         return $role;
     }
 
+    //修改角色信息
     public function update()
     {
         $this->validate(request(), [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|unique:admin_roles,name',
             'description' => 'required',
             'id' => 'required'
         ]);
         $role = AdminRole::find(\request()->input('id'));
         $role->update(\request()->input());
         return redirect('admin/roles');
+    }
+
+    public function delete(AdminRole $role)
+    {
+        $role->delete();
+        return response()->json([
+            'code' => 0,
+            'msg' => '删除成功',
+            'data' => []
+        ],200);
     }
 
     /**
@@ -62,6 +75,7 @@ class RoleController extends Controller
     public function permission(AdminRole $role)
     {
         $permissions = AdminPermission::all();
+        $permissions = $this->obj2LevelTree($permissions);
         $myPermissions = $role->permissions;
         return view('admin/role/permission', compact('permissions', 'myPermissions', 'role'));
     }

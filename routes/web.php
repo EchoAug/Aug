@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/permission/store', '\App\Admin\Controllers\PermissionController@store');
             Route::get('/permission/{permission}','\App\Admin\Controllers\PermissionController@edit');
             Route::post('/permission/update','\App\Admin\Controllers\PermissionController@update');
+            Route::post('/permission/{permission}/delete','\App\Admin\Controllers\PermissionController@delete');
 
             //角色
             Route::get('roles', '\App\Admin\Controllers\RoleController@index');

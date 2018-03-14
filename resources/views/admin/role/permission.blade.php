@@ -19,11 +19,12 @@
                                 @foreach($permissions as $permission)
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="permissions[]"
+                                            <input type="checkbox" class="minimal" name="permissions[]"
                                                    @if ($myPermissions->contains($permission))
                                                    checked
                                                    @endif
                                                    value="{{$permission->id}}">
+                                            {{str_repeat('-',($permission->level * 4))}}
                                             {{$permission->name}}
                                         </label>
                                     </div>
@@ -34,10 +35,18 @@
                             </div>
                         </form>
 
-
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- iCheck -->
+        <script src="/adminlte/plugins/iCheck/icheck.min.js"></script>
+        <script>
+            //基础使用方法
+            $('input[type="checkbox"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue'
+            });
+        </script>
     </section>
 @endsection

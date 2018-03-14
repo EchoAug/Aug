@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         //验证
         $this->validate(request(), [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|unique:admin_users,name',
             'password' => 'required|min:4'
         ]);
 
@@ -57,7 +57,7 @@ class UserController extends Controller
     public function update()
     {
         $this->validate(request(), [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|unique:admin_users,name',
             'uid' => 'required'
         ]);
         $user = AdminUser::find(request()->input('uid'));

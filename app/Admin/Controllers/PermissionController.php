@@ -12,7 +12,7 @@ class PermissionController extends Controller
 
     public function index()
     {
-        $permissions = AdminPermission::all();
+        $permissions = AdminPermission::orderBy('id','asc')->get();
         $permissions = $this->obj2LevelTree($permissions);
         return view('/admin/permission/index', compact('permissions'));
     }
@@ -27,7 +27,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'name' => 'required|min:2',
+            'name' => 'required|min:2|unique:admin_permissions,name',
             'title' => 'required',
             'description' => 'required|max:500',
             'pid' => 'required|numeric'
@@ -51,16 +51,25 @@ class PermissionController extends Controller
     public function update()
     {
         $this->validate(request(), [
-            'name' => 'required|min:2',
+            'name' => 'required|min:2|unique:admin_permissions,name',
             'title' => 'required',
             'description' => 'required|max:500',
             'pid' => 'required|numeric',
-            'id'=> 'required|numeric'
+            'id' => 'required|numeric'
         ]);
         $permission = AdminPermission::find(\request()->input('id'));
         $permission->update(\request()->input());
         return redirect('admin/permissions');
     }
 
+    public function delete(AdminPermission $permission)
+    {
+        $permission->delete();
+        return response()->json([
+            'code' => 0,
+            'msg' => '删除成功',
+            'data' => []
+        ],200);
+    }
 
 }
